@@ -1,0 +1,6 @@
+<h2>Services Status </h2>
+ <%= raw ap(@health['services']) %>
+<h2>Database Status</h2>
+<%= raw ap(@health['database']) %>
+<h2>Health Status</h2>
+<%= raw ap(@health['ok']) %>

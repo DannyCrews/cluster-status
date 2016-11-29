@@ -1,2 +1,11 @@
-<h1>Health#index</h1>
-<%= @health %>
+<div class="health-container">
+
+  <h1>Health Status Board</h1>
+
+  <div id="health-status">
+    <%= render 'health_status', health: @health %>
+  </div>
+
+</div>
+
+
