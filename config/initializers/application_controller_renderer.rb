@@ -4,3 +4,5 @@
 #   http_host: 'example.org',
 #   https: false
 # )
+#
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
