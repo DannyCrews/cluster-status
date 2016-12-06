@@ -11,7 +11,7 @@ require 'conjur_api'
           expect(response).to be_an_instance_of(Hash)
           expect(response['database']['replication_status']["pg_stat_replication"]).
               to be_an_instance_of(Array)
-          response.size.should be  > 0
+          expect(response.size).to be  > 0
         end
       end
 
