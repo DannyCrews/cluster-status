@@ -4,6 +4,7 @@ RSpec.feature "Visit root path" do
     visit "/"
 
     expect(page).to have_content("Health Status Board")
+    expect(page.current_path).to eq(root_path)
   end
 
 
