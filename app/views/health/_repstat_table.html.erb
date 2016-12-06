@@ -3,8 +3,8 @@
   <table class="table-sm table-bordered">
     <thead>
       <tr>
-        <th>Metric</th>
-        <th>Status</th>
+        <th class='center'>Metric</th>
+        <th class='center'>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -12,7 +12,7 @@
           <% metric.each do |key, value| %>
             <tr>
               <td><%= key %>:</td>
-              <td><%= value %></td>
+              <td class='center'><%= value %></td>
             </tr>
           <% end %>
         </tr>

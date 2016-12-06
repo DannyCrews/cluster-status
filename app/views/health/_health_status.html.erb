@@ -3,8 +3,8 @@
 
 <%#=  raw ap(@health['database']) %>
 
-<div class="center">
-  <h1 class='col-md-12'><span class='title'>Health Status Board</span></h1>
+<div class="center row">
+  <h1><span class='title'>Health Status Board</span></h1>
 </div>
 
 
@@ -17,14 +17,14 @@
     <% end %>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <h2>Services Status </h2>
+<div class="row card-group">
+  <div class="col-md-3 card">
+    <h4>Services Status </h4>
     <table class="table-sm table-bordered">
       <thead>
         <tr>
-          <th>Service</th>
-          <th>Status</th>
+          <th class='center'>Service</th>
+          <th class='center'>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -32,33 +32,67 @@
           <tr>
             <td><%= name %>:</td>
             <% if status == 'ok' || status == true %>
-              <td class='text-success'><%= status %></td>
+              <td class='text-success center'><%= status %></td>
             <% else %>
-              <td class='text-danger'><%= status %></td>
+              <td class='text-danger center'><%= status %></td>
             <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
-
   </div>
-  <div class="col-md-6">
-    <h2>General Database Status</h2>
+
+
+  <div class="col-md-3 card">
+    <h4>General Database Status</h4>
       <table class="table-sm table-bordered">
         <thead>
           <tr>
-            <th>Service</th>
-            <th>Status</th>
+            <th class='center'>Service</th>
+            <th class='center'>Status</th>
           </tr>
         </thead>
         <tbody>
           <% @health['database'].each do |name, status| %>
             <tr>
-              <% if name != 'replication_status' %>
+              <% if name != 'replication_status' && name != 'archive_replication_status' %>
                 <td><%= name %>:</td>
                 <td><%= status %></td>
               <% end %>
             </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+  <div class="col-md-3 card">
+    <h4>Archive Replication Status</h4>
+      <table class="table-sm table-bordered">
+        <thead>
+          <tr>
+            <th class='center'>Service</th>
+            <th class='center'>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @health['database']['archive_replication_status'].each do |name, status| %>
+            <% if name == 'pg_stat_replication' %>
+              <% status.each do |metric| %>
+                <% metric.each do |key, value| %>
+                  <tr>
+                    <td><%= key %>:</td>
+                    <td class='center'><%= value %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% else %>
+              <tr>
+                <td><%= name %>:</td>
+                <td><%= status %></td>
+              </tr>
+            <% end %>
+
           <% end %>
         </tbody>
       </table>
