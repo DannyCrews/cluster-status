@@ -9,13 +9,18 @@
 
 
 <div class="center row">
-  <p class="center">Health Status: <span><%= @health['ok'] %></span></p>
+  <p class="center">Health Status:
+    <% if @health['ok'] == true %>
+      <span class='text-success'><%= @health['ok'] %></span></p>
+    <% else %>
+      <span class='text-danger'><%= @health['ok'] %></span></p>
+    <% end %>
 </div>
 
 <div class="row">
   <div class="col-md-6">
     <h2>Services Status </h2>
-    <table class="table table-bordered">
+    <table class="table-sm table-bordered">
       <thead>
         <tr>
           <th>Service</th>
@@ -26,7 +31,11 @@
         <% @health['services'].each do |name, status| %>
           <tr>
             <td><%= name %>:</td>
-            <td><%= status %></td>
+            <% if status == 'ok' || status == true %>
+              <td class='text-success'><%= status %></td>
+            <% else %>
+              <td class='text-danger'><%= status %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -35,7 +44,7 @@
   </div>
   <div class="col-md-6">
     <h2>General Database Status</h2>
-      <table class="table table-striped table-bordered">
+      <table class="table-sm table-bordered">
         <thead>
           <tr>
             <th>Service</th>
