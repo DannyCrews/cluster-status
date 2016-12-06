@@ -36,6 +36,15 @@ RSpec.configure do |config|
   #     with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'conjur-master.itp.conjur.net', 'User-Agent'=>'Ruby'}).
   #     to_return(:status => 200, :body => "", :headers => {})
   # end
+  config.around(:each) do |ex|
+    if ex.metadata.key?(:vcr)
+      ex.run
+    else
+      WebMock.allow_net_connect!
+      VCR.turned_off { ex.run }
+      WebMock.disable_net_connect!
+    end
+  end
 
 
   config.expect_with :rspec do |expectations|
