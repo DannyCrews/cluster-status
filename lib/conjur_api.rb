@@ -1,4 +1,6 @@
-class Conjur < ApplicationRecord
+require 'httparty'
+
+class ConjurApi
   include HTTParty
   base_uri 'https://conjur-master.itp.conjur.net'
   default_timeout 1 #hard timeout after 1 second
@@ -30,6 +32,5 @@ class Conjur < ApplicationRecord
       get("/health")
     end
   end
-
 
 end
