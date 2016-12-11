@@ -13,8 +13,6 @@ http_interactions:
       - "*/*"
       User-Agent:
       - Ruby
-      Host:
-      - conjur-master.itp.conjur.net
   response:
     status:
       code: 200
@@ -23,11 +21,11 @@ http_interactions:
       Server:
       - nginx/1.9.3
       Date:
-      - Sun, 11 Dec 2016 21:45:02 GMT
+      - Tue, 06 Dec 2016 16:57:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3033'
+      - '3019'
       Connection:
       - keep-alive
       Conjur-Health:
@@ -57,12 +55,12 @@ http_interactions:
             },
             "free_space": {
               "main": {
-                "inodes": 1065763,
-                "kbytes": 14546676
+                "inodes": 1065776,
+                "kbytes": 14543192
               },
               "archive": {
-                "inodes": 1065763,
-                "kbytes": 14546676
+                "inodes": 1065776,
+                "kbytes": 14543192
               }
             },
             "replication_status": {
@@ -73,12 +71,12 @@ http_interactions:
                   "client_addr": "54.211.178.99",
                   "backend_start": "2016-11-14 17:37:17 +0000",
                   "state": "streaming",
-                  "sent_location": "8/1080ED48",
-                  "replay_location": "8/1080ED48",
+                  "sent_location": "8/EC9C6D0",
+                  "replay_location": "8/EC9C6D0",
                   "sync_priority": 0,
                   "sync_state": "async",
-                  "sent_location_bytes": 34636623176,
-                  "replay_location_bytes": 34636623176,
+                  "sent_location_bytes": 2395588304,
+                  "replay_location_bytes": 2395588304,
                   "replication_lag_bytes": 0
                 },
                 {
@@ -87,12 +85,12 @@ http_interactions:
                   "client_addr": "107.23.142.215",
                   "backend_start": "2016-11-14 17:37:21 +0000",
                   "state": "streaming",
-                  "sent_location": "8/1080ED48",
-                  "replay_location": "8/1080ED48",
+                  "sent_location": "8/EC9C6D0",
+                  "replay_location": "8/EC9C6D0",
                   "sync_priority": 0,
                   "sync_state": "async",
-                  "sent_location_bytes": 34636623176,
-                  "replay_location_bytes": 34636623176,
+                  "sent_location_bytes": 2395588304,
+                  "replay_location_bytes": 2395588304,
                   "replication_lag_bytes": 0
                 },
                 {
@@ -101,17 +99,17 @@ http_interactions:
                   "client_addr": "107.21.89.217",
                   "backend_start": "2016-11-14 17:37:21 +0000",
                   "state": "streaming",
-                  "sent_location": "8/1080ED48",
-                  "replay_location": "8/1080ED48",
+                  "sent_location": "8/EC9C6D0",
+                  "replay_location": "8/EC9C6D0",
                   "sync_priority": 0,
                   "sync_state": "async",
-                  "sent_location_bytes": 34636623176,
-                  "replay_location_bytes": 34636623176,
+                  "sent_location_bytes": 2395588304,
+                  "replay_location_bytes": 2395588304,
                   "replication_lag_bytes": 0
                 }
               ],
-              "pg_current_xlog_location": "8/1080ED48",
-              "pg_current_xlog_location_bytes": 34636623176
+              "pg_current_xlog_location": "8/EC9C6D0",
+              "pg_current_xlog_location_bytes": 2395588304
             },
             "archive_replication_status": {
               "pg_stat_replication": [
@@ -121,21 +119,21 @@ http_interactions:
                   "client_addr": "107.21.89.217",
                   "backend_start": "2016-11-14 17:37:21 +0000",
                   "state": "streaming",
-                  "sent_location": "85/2BCD3100",
-                  "replay_location": "85/2BCD3100",
+                  "sent_location": "7F/8FD36528",
+                  "replay_location": "7F/8FD36528",
                   "sync_priority": 0,
                   "sync_state": "async",
-                  "sent_location_bytes": 571965518080,
-                  "replay_location_bytes": 571965518080,
+                  "sent_location_bytes": 547873842472,
+                  "replay_location_bytes": 547873842472,
                   "replication_lag_bytes": 0
                 }
               ],
-              "pg_current_xlog_location": "85/2BCD3100",
-              "pg_current_xlog_location_bytes": 571965518080
+              "pg_current_xlog_location": "7F/8FD36528",
+              "pg_current_xlog_location_bytes": 547873842472
             }
           },
           "ok": true
         }
     http_version: 
-  recorded_at: Sun, 11 Dec 2016 21:45:02 GMT
+  recorded_at: Tue, 06 Dec 2016 16:57:30 GMT
 recorded_with: VCR 3.0.3

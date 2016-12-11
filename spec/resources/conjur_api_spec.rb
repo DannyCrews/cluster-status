@@ -8,11 +8,11 @@ require 'conjur_api'
         response = ConjurApi.get_health
 
         it 'returns a health status object' do
-            expect(response.size).to be  > 0
+            expect(response.to_h.size).to be  > 0
           end
 
-        it 'returns a hash' do
-          expect(response).to be_an_instance_of(Hash)
+        it 'returns an OpenStruct' do
+          expect(response).to be_an_instance_of(OpenStruct)
         end
 
         it 'returns a "pg_stat_replication" array' do

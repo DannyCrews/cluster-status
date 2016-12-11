@@ -1,7 +1,7 @@
 
 
 
-<%#=  raw ap(@health['database']) %>
+<%#=  @health.services %>
 
 <header class="center row page-header">
   <h1><span class='title'>Application Cluster Status</span></h1>
@@ -10,10 +10,10 @@
 
 <div class="center row">
   <h2 class="center">Health Status:
-    <% if @health['ok'] == true %>
-      <span class='text-success'><%= @health['ok'] %></span></h2>
+    <% if @health.ok == true %>
+      <span class='text-success'><%= @health.ok %></span></h2>
     <% else %>
-      <span class='text-danger'><%= @health['ok'] %></span></h2>
+      <span class='text-danger'><%= @health.ok %></span></h2>
     <% end %>
 </div>
 
@@ -31,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @health['services'].each do |name, status| %>
+          <% @health.services.to_h.each do |name, status| %>
             <tr>
               <td><%= name %>:</td>
               <% if status == 'ok' || status == true %>
@@ -57,11 +57,31 @@
             </tr>
           </thead>
           <tbody>
-            <% @health['database'].each do |name, status| %>
+            <% @health.database.to_h.each do |name, status| %>
               <tr>
-                <% if name != 'replication_status' && name != 'archive_replication_status' %>
+                <% if name.to_s == 'ok' %>
                   <td><%= name %>:</td>
-                  <td><%= status %></td>
+                  <td class='center'><%= status %></td>
+                <% elsif name.to_s == 'connect' %>
+                  <tr><th>Connect</th></tr>
+                  <% status.to_h.each do |key, value| %>
+                    <tr>
+                      <td><%= key %>:</td>
+                      <td class='center'><%= value %></td>
+                    </tr>
+                  <% end %>
+                <% elsif name.to_s == 'free_space' %>
+                  <tr><th>Free Space</th></tr>
+                  <% status.to_h.each do |key, value| %>
+                    <tr>
+                      <td><%= "#{key}-inodes" %>:</td>
+                      <td class='center'><%= value.inodes %></td>
+                    </tr>
+                    <tr>
+                      <td><%= "#{key}-kbytes" %>:</td>
+                      <td class='center'><%= value.kbytes %></td>
+                    </tr>
+                  <% end %>
                 <% end %>
               </tr>
             <% end %>
@@ -81,10 +101,10 @@
             </tr>
           </thead>
           <tbody>
-            <% @health['database']['archive_replication_status'].each do |name, status| %>
-              <% if name == 'pg_stat_replication' %>
+            <% @health.database.archive_replication_status.to_h.each do |name, status| %>
+              <% if name.to_s == 'pg_stat_replication' %>
                 <% status.each do |metric| %>
-                  <% metric.each do |key, value| %>
+                  <% metric.to_h.each do |key, value| %>
                     <tr>
                       <td><%= key %>:</td>
                       <td class='center'><%= value %></td>
@@ -114,6 +134,7 @@
   </div>
   </div>
 </div>
+
 
 
 

@@ -1,5 +1,5 @@
 
-<% @health['database']['replication_status']["pg_stat_replication"].each do |metric| %>
+<% @health.database.replication_status.pg_stat_replication.each do |metric| %>
   <table class="table-sm">
     <thead>
       <tr>
@@ -9,7 +9,7 @@
     </thead>
     <tbody>
         <tr>
-          <% metric.each do |key, value| %>
+          <% metric.to_h.each do |key, value| %>
             <tr>
               <td><%= key %>:</td>
               <td class='center'><%= value %></td>
