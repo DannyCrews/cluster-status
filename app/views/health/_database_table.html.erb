@@ -1,0 +1,46 @@
+<table class="table-sm">
+  <thead>
+    <tr>
+      <th class='center'>Service</th>
+      <th class='center'>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @health.database.to_h.each do |name, status| %>
+      <tr>
+        <% if name.to_s == 'ok' %>
+          <td><%= name %>:</td>
+          <% if status == true %>
+            <td class='text-success center'><%= status %></td>
+          <% else %>
+            <td class='text-danger center'><%= status %></td>
+          <% end %>
+        <% elsif name.to_s == 'connect' %>
+          <tr><th>Connect Status</th></tr>
+          <% status.to_h.each do |key, value| %>
+            <tr>
+              <td><%= key %>:</td>
+              <% if value == 'ok' %>
+                <td class='text-success center'><%= value %></td>
+              <% else %>
+                <td class='text-danger center'><%= value %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% elsif name.to_s == 'free_space' %>
+          <tr><th>Free Space</th></tr>
+          <% status.to_h.each do |key, value| %>
+            <tr>
+              <td><%= "#{key}-inodes" %>:</td>
+              <td class='center'><%= value.inodes %></td>
+            </tr>
+            <tr>
+              <td><%= "#{key}-kbytes" %>:</td>
+              <td class='center'><%= value.kbytes %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,27 @@
+<table class="table-sm">
+  <thead>
+    <tr>
+      <th class='center'>Service</th>
+      <th class='center'>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @health.database.archive_replication_status.to_h.each do |name, status| %>
+      <% if name.to_s == 'pg_stat_replication' %>
+        <% status.each do |metric| %>
+          <% metric.to_h.each do |key, value| %>
+            <tr>
+              <td><%= key %>:</td>
+              <td class='center'><%= value %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% else %>
+        <tr>
+          <td><%= name %>:</td>
+          <td class="center"><%= status %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
